@@ -26,12 +26,23 @@
           center: new google.maps.LatLng(25, 0),
           zoom: 2,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
-          styles: [{
-            featureType: 'water',
-            stylers: [
-              { color: '#58488a' }
-            ]
-          }
+          styles: [
+            {
+              "elementType": "labels",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },{
+              "featureType": "landscape.natural",
+              "stylers": [
+                { "color": "#c8c1dd" }
+              ]
+            },{
+              "featureType": "water",
+              "stylers": [
+                { "color": "#58488a" }
+              ]
+            }
           ]
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"),
