@@ -20,55 +20,6 @@
 
     %script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBvQXJpKO3EL1V30dbO2KPY4QFtqsnu3bE&sensor=false"}
 
-    :javascript
-      function map_initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(25, 0),
-          zoom: 2,
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-          disableDefaultUI: true,
-          styles: [
-            {
-              "elementType": "labels",
-              "stylers": [
-                { "visibility": "off" }
-              ]
-            },{
-              "featureType": "landscape.natural",
-              "stylers": [
-                { "color": "#c8c1dd" }
-              ]
-            },{
-              "featureType": "water",
-              "stylers": [
-                { "color": "#58488a" }
-              ]
-            },
-            {
-              "featureType": "road",
-              "stylers": [
-                { "visibility": "off" }
-              ]
-            },
-            {
-              "featureType": "poi",
-              "stylers": [
-                { "visibility": "off" }
-              ]
-            },
-            {
-              "featureType": "transit",
-              "stylers": [
-                { "visibility": "off" }
-              ]
-            }
-          ]
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', map_initialize);
-
   %body
 
     %header
@@ -76,8 +27,6 @@
       %h1
         %span Heroku
         %em Logwatch
-
-    #map-canvas
 
     =yield
 

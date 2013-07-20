@@ -22,7 +22,11 @@ class App < Sinatra::Base
 
   get '/' do
     @apps = api.get_apps.body
-    haml GeoIP.new(GEOIP_FILE).city('heroku.com').to_hash.to_s
+    haml :index
+  end
+
+  get '/:app' do
+    haml :map
   end
 
 end
