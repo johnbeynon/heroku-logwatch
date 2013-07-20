@@ -1,16 +1,33 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.3.5)
     backports (3.3.3)
     daemons (1.1.9)
     eventmachine (1.0.3)
+    excon (0.25.3)
     haml (4.0.3)
       tilt
+    heroku (2.39.4)
+      heroku-api (~> 0.3.7)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.7)
+      rest-client (~> 1.6.1)
+      rubyzip
+    heroku-api (0.3.14)
+      excon (~> 0.25.1)
+    launchy (2.3.0)
+      addressable (~> 2.3)
+    mime-types (1.23)
+    netrc (0.7.7)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    rubyzip (0.9.9)
     sinatra (1.4.3)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -32,7 +49,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  excon
   haml
+  heroku
   sinatra
   sinatra-contrib
   thin
