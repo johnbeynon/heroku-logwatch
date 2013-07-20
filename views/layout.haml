@@ -8,7 +8,7 @@
 
   %head
 
-    %meta{:charset => "utf-8"}
+    %meta{charset: "utf-8"}
 
     %title Heroku Logwatch
 
@@ -16,16 +16,53 @@
     %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
 
     %link{rel: "stylesheet", href: "/stylesheets/core.css"}
-
+    %link{href: "/favicon.ico", rel: "shortcut icon", type: "image/vnd.microsoft.icon"}
 
     %script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBvQXJpKO3EL1V30dbO2KPY4QFtqsnu3bE&sensor=false"}
 
     :javascript
       function map_initialize() {
         var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          center: new google.maps.LatLng(25, 0),
+          zoom: 2,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: true,
+          styles: [
+            {
+              "elementType": "labels",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },{
+              "featureType": "landscape.natural",
+              "stylers": [
+                { "color": "#c8c1dd" }
+              ]
+            },{
+              "featureType": "water",
+              "stylers": [
+                { "color": "#58488a" }
+              ]
+            },
+            {
+              "featureType": "road",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },
+            {
+              "featureType": "poi",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },
+            {
+              "featureType": "transit",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            }
+          ]
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
@@ -36,11 +73,13 @@
 
     %header
 
-      %h1 Heroku Logwatch
+      %h1
+        %span Heroku
+        %em Logwatch
 
-      = yield
+    #map-canvas
 
-      #map-canvas
+    =yield
 
     %footer
       %p
