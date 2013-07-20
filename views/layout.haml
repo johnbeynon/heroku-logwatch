@@ -16,7 +16,7 @@
     %meta{name: "viewport", content: "width=device-width, initial-scale=1"}
 
     %link{rel: "stylesheet", href: "/stylesheets/core.css"}
-
+    %link{href: "/favicon.ico", rel: "shortcut icon", type: "image/vnd.microsoft.icon"}
 
     %script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBvQXJpKO3EL1V30dbO2KPY4QFtqsnu3bE&sensor=false"}
 
@@ -26,6 +26,7 @@
           center: new google.maps.LatLng(25, 0),
           zoom: 2,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: true,
           styles: [
             {
               "elementType": "labels",
@@ -41,6 +42,24 @@
               "featureType": "water",
               "stylers": [
                 { "color": "#58488a" }
+              ]
+            },
+            {
+              "featureType": "road",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },
+            {
+              "featureType": "poi",
+              "stylers": [
+                { "visibility": "off" }
+              ]
+            },
+            {
+              "featureType": "transit",
+              "stylers": [
+                { "visibility": "off" }
               ]
             }
           ]
