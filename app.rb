@@ -5,6 +5,8 @@ STDOUT.sync = true
 
 class App < Sinatra::Base
 
+  GEOIP_FILE = File.join(File.dirname(__FILE__), 'lib', 'geoip', 'GeoLiteCity.dat')
+
   configure :development do
     require "sinatra/reloader"
     register Sinatra::Reloader
@@ -20,7 +22,7 @@ class App < Sinatra::Base
 
   get '/' do
     @apps = api.get_apps.body
-    haml ''
+    haml GeoIP.new(GEOIP_FILE).city('heroku.com').to_hash.to_s
   end
 
 end

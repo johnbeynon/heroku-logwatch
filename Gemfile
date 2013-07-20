@@ -8,7 +8,8 @@ gem 'heroku-api'
 gem 'excon'
 gem 'heroku'
 gem 'haml'
-
+gem 'thin'
+gem 'geoip'
 group :development do
   gem 'foreman'
 end
