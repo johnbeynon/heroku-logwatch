@@ -1,4 +1,5 @@
-require './app.rb'
+require 'heroku/bouncer'
+require './app'
 
-run Sinatra::Application
-
+use Heroku::Bouncer
+run App
