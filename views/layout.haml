@@ -8,7 +8,7 @@
 
   %head
 
-    %meta{:charset => "utf-8"}
+    %meta{charset: "utf-8"}
 
     %title Heroku Logwatch
 
@@ -23,9 +23,16 @@
     :javascript
       function map_initialize() {
         var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          center: new google.maps.LatLng(25, 0),
+          zoom: 2,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          styles: [{
+            featureType: 'water',
+            stylers: [
+              { color: '#58488a' }
+            ]
+          }
+          ]
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
@@ -36,11 +43,13 @@
 
     %header
 
-      %h1 Heroku Logwatch
+      %h1
+        %span Heroku
+        %em Logwatch
 
-      = yield
+    #map-canvas
 
-      #map-canvas
+    =yield
 
     %footer
       %p
