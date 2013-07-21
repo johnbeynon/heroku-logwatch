@@ -22,16 +22,12 @@ class App < Sinatra::Base
     end
   end
 
-  get '/' do
+  get '/?:app?' do
     @apps = api.get_apps.body
     haml :index
   end
 
-  get '/map/:app' do
-    haml :map
-  end
-
-  get '/map/:app/markers' do
+  get '/:app/markers' do
     # TODO: Move to own route?
     request.env['bouncer.token']
     #logplexparse = HerokuLogwatch::LogplexParser.new(request.env['bouncer.token'], params['app'])
