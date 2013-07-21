@@ -20,20 +20,15 @@ class App < Sinatra::Base
   end
 
   helpers do
-    # Heroku API
     def api
       halt(401) unless request.env['bouncer.token']
       Heroku::API.new(api_key: request.env['bouncer.token'])
     end
   end
 
-  get '/' do
+  get '/?:app?' do
     @apps = api.get_apps.body
     haml :index
-  end
-
-  get '/map/:app' do
-    haml :map
   end
 
   get '/map/:app/markers' do
@@ -50,8 +45,6 @@ class App < Sinatra::Base
   def geolocate(ip)
     GeoIP.new(GEOIP_FILE).city(ip).to_hash
   end
-
-
 
   def logplex
     @logplexparse ||= LogplexParser.new(request.env['bouncer.token'], params['app'])

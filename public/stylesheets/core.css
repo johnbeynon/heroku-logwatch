@@ -1,12 +1,30 @@
-/* Styles */
-*{ margin:0; padding:0; border:0;}
-body {font-family: Helvetica, Arial, sans-serif;}
-
-header { background: #58488a; color: #c7c0de; padding: 0.8em; }
-header h1 em { display: inline-block; color: #fff; vertical-align: middle; font-weight:normal; font-size:0.72em; padding-top:0.16em;}
-header h1 span { font: 0/0 a; color: transparent; text-shadow: none; background-image: url("/images/logo.png"); width: 115px; height: 40px; display: inline-block; vertical-align: middle;}
-#map-canvas {
-  width: 100%;
-  height: 500px;
+@font-face {
+  font-family: Corbel;
+  src: url(fonts/corbel.ttf);
 }
-footer {text-align:center;padding:0.8em;color:#333;}
+@font-face {
+  font-family: BentonSans;
+  src: url(fonts/BentonSans-Regular.otf);
+}
+
+*{ margin:0; padding:0; border:0;}
+html {width:100%; height:100%;}
+body {width:100%; height:100%;font-family: 'BentonSans', Helvetica, Arial, sans-serif;}
+
+a { text-decoration:none; color: #333; }
+
+header { position:fixed; top:0; left:0;padding: 0.8em; z-index:10;}
+header h1 em { font-family: 'Corbel', Helvetica, Arial, sans-serif;;  display: inline-block; color: #fff; vertical-align: middle; font-weight:normal; font-size:0.8em; padding-top:0.055em; font-style: normal; }
+header h1 span { font: 0/0 a; color: transparent; text-shadow: none; background-image: url("/images/logo.png"); width: 115px; height: 40px; display: inline-block; vertical-align: middle;}
+#map-canvas { width: 100%; height: 100%; position:fixed; }
+#app_nav_wrap { width: 250px; height:30px; background: #fff; overflow:hidden; box-shadow: 2px 2px 5px rgba(50, 50, 50, 0.75);}
+ul#app_nav { position:fixed; top:20px; right: 20px; z-index:20; width: 250px; height:30px; background: #fff; list-style:none; overflow:hidden;}
+ul#app_nav:hover { height:auto; }
+ul#app_nav li { width: 250px; height:30px; border-bottom: 1px solid #58488a;}
+ul#app_nav li a { display:block; width: 236px; height:21px; text-transform: capitalize; padding: 9px 7px 0 7px; background:#c8c1dd; font-size: 0.8em;}
+ul#app_nav li a:hover { background:#a9d; }
+ul#app_nav li:last-child { border:0; }
+ul#app_nav li:first-child { width: 236px; height:21px; color:#58488a; background: #fff; text-transform: capitalize; padding: 9px 7px 0 7px;}
+ul#app_nav li span {float:right; margin-top: -4px;}
+ul#app_nav li span:after { content:'\00a0\25be'; }
+footer {position:fixed; bottom:30px; right:10px; color:#fff; z-index:20; font-size:0.75em;}
