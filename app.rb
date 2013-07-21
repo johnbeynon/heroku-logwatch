@@ -1,7 +1,12 @@
 require 'bundler'
 Bundler.require
 
+require 'pusher'
+
 STDOUT.sync = true
+$stdout.sync = true
+
+Pusher.url = ENV["PUSHER_URL"]
 
 require_relative 'lib/logplex_parser'
 
@@ -32,16 +37,24 @@ class App < Sinatra::Base
   end
 
   get '/map/:app/markers' do
-    # TODO: Move to own route?
-    request.env['bouncer.token']
-    #logplexparse = HerokuLogwatch::LogplexParser.new(request.env['bouncer.token'], params['app'])
-    #logplexparse.parse do |entry|
-    #  raise entry.inspect
-    #  # TODO: Geocode remote IP
-    #  # TODO: Pusher marker onto MAP
-    #end
-    haml ''
+    logplex.parse Proc.new{|data| output_record data }
+  end
 
+  def output_record(record)
+    location = geolocate(record[:remote_ip])
+    Pusher['my-channel'].trigger('my_event', {"lat"     => location[:latitude],
+                                              "lon"     => location[:longitude],
+                                              "message" => record[:path]})
+  end
+
+  def geolocate(ip)
+    GeoIP.new(GEOIP_FILE).city(ip).to_hash
+  end
+
+
+
+  def logplex
+    @logplexparse ||= LogplexParser.new(request.env['bouncer.token'], params['app'])
   end
 
 end
