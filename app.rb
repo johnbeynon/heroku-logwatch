@@ -33,7 +33,7 @@ class App < Sinatra::Base
 
   def output_record(record, app)
     location = geolocate(record[:remote_ip])
-    Pusher[app].trigger('my_event', {"lat"     => location[:latitude],
+    Pusher[app].trigger('add_marker', {"lat"            => location[:latitude],
                                               "lon"     => location[:longitude],
                                               "message" => record[:path]})
   end

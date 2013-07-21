@@ -3,7 +3,7 @@
   var channel = pusher.subscribe("#{@app}");
   var map;
 
-  channel.bind('my_event', function(data) {
+  channel.bind('add_marker', function(data) {
     addMarker(data);
   });
 
