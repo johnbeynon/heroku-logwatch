@@ -10,6 +10,11 @@ gem 'heroku'
 gem 'haml'
 gem 'thin'
 gem 'geoip'
+gem 'eventmachine', "~>1.0.0.beta"
+gem 'em-http-request', '~>1.0'
+gem 'pusher'
+
+
 group :development do
   gem 'foreman'
 end
