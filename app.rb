@@ -28,13 +28,20 @@ class App < Sinatra::Base
   end
 
   get '/map/:app' do
-    # TODO: Move to own route?
-    #logplexparser = HerokuLogwatch::LogplexParser.new(api, params['app'])
-    #logplexparse.parse do |entry|
-    # TODO: Geocode remote IP
-    # TODO: Pusher marker onto MAP
-    #end
     haml :map
+  end
+
+  get '/map/:app/markers' do
+    # TODO: Move to own route?
+    request.env['bouncer.token']
+    #logplexparse = HerokuLogwatch::LogplexParser.new(request.env['bouncer.token'], params['app'])
+    #logplexparse.parse do |entry|
+    #  raise entry.inspect
+    #  # TODO: Geocode remote IP
+    #  # TODO: Pusher marker onto MAP
+    #end
+    haml ''
+
   end
 
 end
