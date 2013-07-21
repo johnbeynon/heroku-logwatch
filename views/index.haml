@@ -58,13 +58,13 @@
     loglatlng = new google.maps.LatLng(mapData['lat'],mapData['lon']);
 
     var image = {
-      url: '/images/heroku_marker_sprite.png',
+      url: 'http://s3.pennell-smith.co.uk/heroku_marker_sprite.png',
       size: new google.maps.Size(20, 34),
       origin: new google.maps.Point(0,0),
       anchor: new google.maps.Point(10, 34)
     };
     var shadow = {
-      url: '/images/heroku_marker_sprite.png',
+      url: 'http://s3.pennell-smith.co.uk/heroku_marker_sprite.png',
       size: new google.maps.Size(37, 34),
       origin: new google.maps.Point(20,0),
       anchor: new google.maps.Point(10, 34)
@@ -74,8 +74,8 @@
       position: loglatlng,
       map: map,
       title: mapData['message']
-      // icon: image,
-      // shadow: shadow
+      icon: image,
+      shadow: shadow
     });
   }
 
