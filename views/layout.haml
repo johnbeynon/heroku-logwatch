@@ -19,6 +19,15 @@
     %link{href: "/favicon.ico", rel: "shortcut icon", type: "image/vnd.microsoft.icon"}
 
     %script{src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyBvQXJpKO3EL1V30dbO2KPY4QFtqsnu3bE&sensor=false"}
+    %script{src: "http://js.pusher.com/2.1/pusher.min.js"}
+
+    :javascript
+      var pusher = new Pusher("#{ENV['PUSHER_APP_KEY']}", {cluster: 'eu'});
+      var channel = pusher.subscribe('my-channel');
+      channel.bind('my_event', function(data) {
+        // Markers added to mapp here
+        alert(data.message);
+      });
 
   %body
 
