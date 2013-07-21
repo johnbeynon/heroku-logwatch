@@ -3,8 +3,8 @@ require 'excon'
 module HerokuLogwatch
   class LogplexParser
 
-    def initialize(api_key, app_name)
-      @api_key, @app_name = api_key, app_name
+    def initialize(api, app_name)
+      @api, @app_name = api, app_name
     end
 
     def parse(&block)
@@ -28,9 +28,9 @@ module HerokuLogwatch
 
     private
 
-    def api
-      @api ||= Heroku::API.new(api_key: @api_key)
-    end
+    #def api
+    #  @api ||= Heroku::API.new(api_key: @api_key)
+    #end
 
     def logplex_url
       @logplex_url ||= api.get_logs(@app_name, {tail: 1, num: 1500}).body

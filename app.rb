@@ -3,6 +3,8 @@ Bundler.require
 
 STDOUT.sync = true
 
+require_relative 'lib/logplex_parser'
+
 class App < Sinatra::Base
 
   GEOIP_FILE = File.join(File.dirname(__FILE__), 'lib', 'geoip', 'GeoLiteCity.dat')
@@ -25,7 +27,13 @@ class App < Sinatra::Base
     haml :index
   end
 
-  get '/:app' do
+  get '/map/:app' do
+    # TODO: Move to own route?
+    #logplexparser = HerokuLogwatch::LogplexParser.new(api, params['app'])
+    #logplexparse.parse do |entry|
+    # TODO: Geocode remote IP
+    # TODO: Pusher marker onto MAP
+    #end
     haml :map
   end
 

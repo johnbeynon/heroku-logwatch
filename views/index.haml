@@ -1,1 +1,5 @@
-INDEX!
+%ul
+  - @apps.each do |app|
+    %li
+      %a{href: "/map/#{app["name"]}"}
+        =app["name"]
