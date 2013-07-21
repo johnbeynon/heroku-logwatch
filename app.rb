@@ -6,8 +6,6 @@ require 'pusher'
 STDOUT.sync = true
 $stdout.sync = true
 
-Pusher.url = ENV["PUSHER_URL"]
-
 require_relative 'lib/logplex_parser'
 
 class App < Sinatra::Base
@@ -27,17 +25,15 @@ class App < Sinatra::Base
   end
 
   get '/?:app?' do
+    @app = params["app"]
     @apps = api.get_apps.body
+    logplex.parse Proc.new{|data| output_record data, @app}
     haml :index
   end
 
-  get '/map/:app/markers' do
-    logplex.parse Proc.new{|data| output_record data }
-  end
-
-  def output_record(record)
+  def output_record(record, app)
     location = geolocate(record[:remote_ip])
-    Pusher['my-channel'].trigger('my_event', {"lat"     => location[:latitude],
+    Pusher[app].trigger('my_event', {"lat"     => location[:latitude],
                                               "lon"     => location[:longitude],
                                               "message" => record[:path]})
   end
