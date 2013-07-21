@@ -1,4 +1,12 @@
 :javascript
+  var pusher = new Pusher("#{ENV['PUSHER_APP_KEY']}", {cluster: 'eu'});
+  var channel = pusher.subscribe('my-channel');
+  var map;
+
+  channel.bind('my_event', function(data) {
+    addMarker(data);
+  });
+
   function map_initialize() {
     var mapOptions = {
       center: new google.maps.LatLng(35, 0),
@@ -42,9 +50,35 @@
         }
       ]
     };
-    var map = new google.maps.Map(document.getElementById("map-canvas"),
+    map = new google.maps.Map(document.getElementById("map-canvas"),
         mapOptions);
   }
+
+  function addMarker(mapData) {
+    loglatlng = new google.maps.LatLng(mapData['lat'],mapData['lon']);
+
+    var image = {
+    url: '/images/heroku_marker_sprite.png',
+    size: new google.maps.Size(20, 34),
+    origin: new google.maps.Point(0,0),
+    anchor: new google.maps.Point(10, 34)
+  };
+  var shadow = {
+    url: '/images/heroku_marker_sprite.png',
+    size: new google.maps.Size(37, 34),
+    origin: new google.maps.Point(20,0),
+    anchor: new google.maps.Point(10, 34)
+  };
+
+    new google.maps.Marker({
+      position: loglatlng,
+      map: map,
+      title: mapData['message'],
+      icon: image,
+      shadow: shadow
+    });
+  }
+
   google.maps.event.addDomListener(window, 'load', map_initialize);
 
 #map-canvas
